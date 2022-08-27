@@ -1,9 +1,8 @@
-package pl.coderslab.leaflets.model;
+package pl.coderslab.leaflets.ajax;
 
 
 
 import java.util.Arrays;
-import java.util.List;
 
 public class MyData {
 

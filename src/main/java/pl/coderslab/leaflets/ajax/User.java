@@ -1,4 +1,4 @@
-package pl.coderslab.leaflets.model;
+package pl.coderslab.leaflets.ajax;
 
 public class User {
     private String name;

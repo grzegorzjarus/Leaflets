@@ -4,19 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import pl.coderslab.leaflets.model.MyData;
-import pl.coderslab.leaflets.model.User;
+import pl.coderslab.leaflets.ajax.MyData;
+import pl.coderslab.leaflets.ajax.User;
 
 @Controller
 
 public class MainController {
-
-    @GetMapping("/test")
-    @ResponseBody
-    public String test(){
-            return "Test aplikacji SpringBoot";
-    }
-
 
     static MyData staticData;
 
@@ -35,6 +28,14 @@ public class MainController {
             {51.10062809126138, 17.0893827183208},
             {51.101382264099946, 17.10002284391516}
     };
+
+
+    @GetMapping("/test")
+    @ResponseBody
+    public String test(){
+        return "Test aplikacji SpringBoot";
+    }
+
 
     @GetMapping("/leaflet")
     public String add(Model model) {
@@ -68,14 +69,6 @@ public class MainController {
         }
     }
 
-
-//    @PostMapping(value = "/api/leaflet", consumes = {"application/json"})
-//    public @ResponseBody MyData complicateObject(@RequestBody MyData myData) {
-//        // Method details
-//        staticData = myData;
-//        return myData;
-//    }
-
     @PostMapping(value = "/api/leaflet", consumes = {"application/json"})
     @ResponseBody
     public  MyData complicateObject(@RequestBody MyData myData) {
@@ -87,17 +80,13 @@ public class MainController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("getCoordinates");
 
-
-
         System.out.println(myData);
         return myData;
     }
-
 
     @ExceptionHandler({Exception.class})
     public void resolveException(Exception e) {
         e.printStackTrace();
     }
-
 
 }
