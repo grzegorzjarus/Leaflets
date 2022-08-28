@@ -11,17 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class Proposal {
 
-    public enum ProposalStatus{
-        Before,
-        Initial,
-        Rejected,
-        Cancelled,
-        Accepted,
-        Ready,
-        Distribution,
-        Finished,
-        ReviewDone
-    }
+
 
     private int Id;
     private Date distributionDate;

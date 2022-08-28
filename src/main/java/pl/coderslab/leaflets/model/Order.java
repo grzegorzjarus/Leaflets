@@ -12,16 +12,8 @@ import java.util.List;
 @AllArgsConstructor
 public class Order {
 
-    public enum OrderStatus{
-        AwaitingProposal,
-        Rejected,
-        Cancelled,
-        Accepted,
-        Distribution,
-        Finished,
-        ReviewDone
-    }
-    private int Id;
+
+    private int id;
     private Region orderRegion;
     private int quantity;
     private double leafletWidth;
