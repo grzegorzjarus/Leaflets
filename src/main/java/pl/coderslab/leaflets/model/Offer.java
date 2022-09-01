@@ -4,17 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Order {
+@Entity
+public class Offer {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-    private int id;
+    @OneToOne
     private Region orderRegion;
+
     private int quantity;
     private double leafletWidth;
     private double leafletHeight;
@@ -22,34 +28,40 @@ public class Order {
     private Date earliestDistributionDate;
     private Date latestDistributionDate;
     private OrderStatus status;
+
+    @OneToOne
     private Proposal proposal;
    // private List<Address> notDeliveredAddresses; // should be like this to display addresses as markers
+
+    @OneToMany
     private List<Adress> notDeliveredAddresses;
 
-    public static Order copy(Order order){
-        return order;
+
+
+    public static Offer copy(Offer offer){
+        return offer;
     }
 
-    public Order addProposal(Order order, Proposal proposal){
-        order.status=OrderStatus.Accepted;
-        return order;
+    public Offer addProposal(Offer offer, Proposal proposal){
+        offer.status=OrderStatus.Accepted;
+        return offer;
     }
 
-    public Order acceptProposal(Order order, Proposal proposal){
+    public Offer acceptProposal(Offer offer, Proposal proposal){
         this.proposal=proposal;
-        order.status=OrderStatus.Accepted;
-        return order;
+        offer.status=OrderStatus.Accepted;
+        return offer;
     }
 
-    public Order cancel(Order order){
-        order.status=OrderStatus.Cancelled;
-        return order;
+    public Offer cancel(Offer offer){
+        offer.status=OrderStatus.Cancelled;
+        return offer;
     }
 
-    public Order finish(Order order, List<Adress> notDeliveredAddresses){
+    public Offer finish(Offer offer, List<Adress> notDeliveredAddresses){
         this.notDeliveredAddresses=notDeliveredAddresses;
-        order.status=OrderStatus.Finished;
-        return order;
+        offer.status=OrderStatus.Finished;
+        return offer;
     }
 
 }
