@@ -1,21 +1,21 @@
 package pl.coderslab.leaflets.logic;
 
 import pl.coderslab.leaflets.model.Offer;
-import pl.coderslab.leaflets.model.OrderStatus;
+import pl.coderslab.leaflets.model.OfferStatus;
 import pl.coderslab.leaflets.model.Proposal;
 import pl.coderslab.leaflets.model.ProposalStatus;
 
 public class OfferService {
 
     public Offer createProposal(Offer offer, int id){
-        if(offer.getStatus()!= OrderStatus.AwaitingProposal){
+        if(offer.getStatus()!= OfferStatus.AwaitingProposal){
             throw new RuntimeException(" Invalid order status "+ offer.getStatus());
         }
         return offer.addProposal(offer,Proposal.initial(id));
     }
 
     public Offer rejectProposal(Offer offer, int proposalId){
-        if(offer.getStatus()!= OrderStatus.AwaitingProposal){
+        if(offer.getStatus()!= OfferStatus.AwaitingProposal){
             throw new RuntimeException(" Invalid order status "+ offer.getStatus());
         }
         Proposal proposal = offer.getProposal();
@@ -36,7 +36,7 @@ public class OfferService {
 
     public Offer AcceptProposal(Offer offer, int proposalID)
     {
-        if (offer.getStatus() != OrderStatus.AwaitingProposal)
+        if (offer.getStatus() != OfferStatus.AwaitingProposal)
         {
             throw new RuntimeException(": invalid order status: " + offer.getStatus());
         }
@@ -54,7 +54,7 @@ public class OfferService {
         }
 
         proposal.setStatus(ProposalStatus.Accepted);
-        offer.setStatus(OrderStatus.Accepted);
+        offer.setStatus(OfferStatus.Accepted);
 
        Proposal newProposal = new Proposal();
 

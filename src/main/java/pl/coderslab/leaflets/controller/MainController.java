@@ -1,11 +1,13 @@
-package pl.coderslab.leaflets;
+package pl.coderslab.leaflets.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import pl.coderslab.leaflets.ajax.AjaxUser;
 import pl.coderslab.leaflets.ajax.MyData;
-import pl.coderslab.leaflets.ajax.User;
+import pl.coderslab.leaflets.model.Client;
+import pl.coderslab.leaflets.model.User;
 
 @Controller
 
@@ -13,7 +15,7 @@ public class MainController {
 
     static MyData staticData;
 
-    User user = new User();
+    AjaxUser user = new AjaxUser();
 
     double[][] a = {
             {1.0, 2.1},
@@ -36,12 +38,29 @@ public class MainController {
         return "Test aplikacji SpringBoot";
     }
 
+    @GetMapping("/register")
+    public String registerUser(){
+        return "register";
+    }
+
+
+
+//    @PostMapping("/register")
+//    @ResponseBody
+//    public String save(User user) {
+////        user.setPassword(BCrypt.hashpw(user.getPassword(),BCrypt.gensalt()));
+////        userService.save(user);
+//        //user.setEmail();
+//        String result = user.toString();
+//        return result;
+//    }
+
 
     @GetMapping("/leaflet")
     public String add(Model model) {
         //model.addAttribute("coordinates", coordinates);
         return "leaflets";
-        ///home/grzesiek/Projects/Leaflets/src/main/webapp/WEB-INF/views/leaflets.jsp
+
     }
 
     @GetMapping("/api/leaflet")
