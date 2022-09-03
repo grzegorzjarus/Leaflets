@@ -19,6 +19,8 @@ public class ClientController {
     final ClientRepository clientRepository;
     final ClientService clientService;
 
+    private final String salt = BCrypt.gensalt(); // I don't know it is good idea, but it works
+
     public ClientController(ClientRepository clientRepository, ClientService clientService) {
         this.clientRepository = clientRepository;
         this.clientService = clientService;
@@ -34,7 +36,8 @@ public class ClientController {
     @PostMapping("/register")
     public String registerClient(Client client) {
         System.out.println(client);
-        client.setPassword(BCrypt.hashpw(client.getPassword(), BCrypt.gensalt()));
+        //client.setPassword(BCrypt.hashpw(client.getPassword(), BCrypt.gensalt()));
+        client.setPassword(BCrypt.hashpw(client.getPassword(), salt));
         clientRepository.save(client);
         //return "/loginClient";
         return "redirect:/client/login";
@@ -98,6 +101,7 @@ public class ClientController {
     @PostMapping("/editData")
     public String editData(Client client) {
         System.out.println("Metoda post show editForm " + client);
+        client.setPassword(BCrypt.hashpw(client.getPassword(), salt));
         clientService.save(client);
         return "client/showData";
     }
