@@ -19,7 +19,7 @@
     <form:input path="email"/><br>
 
     Password:
-    <form:input path="password"/>
+    <form:password path="password"/>
 
 
     <input type="submit" value="submit">

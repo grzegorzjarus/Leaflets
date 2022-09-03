@@ -20,7 +20,7 @@
   <form:errors path="surname"/><br/>
   <form:input path="phoneNumber"/>
   <form:errors path="phoneNumber"/><br/>
-  <form:input path="password"/>
+  <form:password path="password"/>
   <form:errors path="password"/><br/>
   <input type="submit" value="Save">
 </form:form>

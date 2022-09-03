@@ -25,7 +25,7 @@
     <form:input path="email"/><br>
     <%--    <form:errors path="email" cssClass="error-class"/>--%>
     Password:
-    <form:input path="password"/><br>
+    <form:password path="password"/><br>
     <%--    <form:errors path="password" cssClass="error-class"/>--%>
     <input type="submit" value="submit">
 </form:form>
