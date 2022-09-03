@@ -1,9 +1,12 @@
 package pl.coderslab.leaflets.model;
 
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@Data
 public class Region {
 
     @Id
@@ -12,6 +15,6 @@ public class Region {
 
     private String name;
 
-    @OneToMany
+    @OneToMany(cascade = {CascadeType.ALL})
     private List<Point> points;
 }

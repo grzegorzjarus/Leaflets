@@ -18,7 +18,7 @@ public class Offer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @OneToOne(cascade = {CascadeType.ALL})
     private Region orderRegion;
 
     private int quantity;
@@ -27,7 +27,7 @@ public class Offer {
     private double kilogramPer1000Pieces;
     private Date earliestDistributionDate;
     private Date latestDistributionDate;
-    private OrderStatus status;
+    private OfferStatus status;
 
     @OneToOne
     private Proposal proposal;
@@ -43,24 +43,24 @@ public class Offer {
     }
 
     public Offer addProposal(Offer offer, Proposal proposal){
-        offer.status=OrderStatus.Accepted;
+        offer.status= OfferStatus.Accepted;
         return offer;
     }
 
     public Offer acceptProposal(Offer offer, Proposal proposal){
         this.proposal=proposal;
-        offer.status=OrderStatus.Accepted;
+        offer.status= OfferStatus.Accepted;
         return offer;
     }
 
     public Offer cancel(Offer offer){
-        offer.status=OrderStatus.Cancelled;
+        offer.status= OfferStatus.Cancelled;
         return offer;
     }
 
     public Offer finish(Offer offer, List<Adress> notDeliveredAddresses){
         this.notDeliveredAddresses=notDeliveredAddresses;
-        offer.status=OrderStatus.Finished;
+        offer.status= OfferStatus.Finished;
         return offer;
     }
 
