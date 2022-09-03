@@ -201,8 +201,8 @@
         'age ' : 10
 
       }
-      var name = "dupa"
-      var surname = "dupa2"
+      var name = "imie"
+      var surname = "nazwisko"
       var age=18
       var myData = {
         'coordinates': coordinates,
