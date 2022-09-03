@@ -1,6 +1,6 @@
 package pl.coderslab.leaflets.model;
 
-public enum OrderStatus{
+public enum OfferStatus {
     AwaitingProposal,
     Rejected,
     Cancelled,
