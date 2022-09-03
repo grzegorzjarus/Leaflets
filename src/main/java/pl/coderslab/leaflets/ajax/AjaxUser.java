@@ -1,6 +1,6 @@
 package pl.coderslab.leaflets.ajax;
 
-public class User {
+public class AjaxUser {
     private String name;
     private int age;
     //private List<String> contacts;
@@ -24,10 +24,10 @@ public class User {
 //    }
 
 
-    public User() {
+    public AjaxUser() {
     }
 
-    public User(String name, int age) {
+    public AjaxUser(String name, int age) {
         this.name = name;
         this.age = age;
     }
