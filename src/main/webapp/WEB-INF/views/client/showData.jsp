@@ -20,6 +20,6 @@
    <h3>Email: ${client.email}</h3>
    <h3>Numer telefonu: ${client.phoneNumber}</h3>
    <h3>Hasło: ${client.password}</h3>
-   <a href="<c:url value="/client/mainPage"/>">Powrót</a>
+   <a href="<c:url value="/client/app/mainPage"/>">Powrót</a>
 </body>
 </html>

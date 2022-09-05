@@ -8,7 +8,7 @@
 </head>
 <body>
 <%--<c:url var="edit_url" value="/admin/books/edit"/>--%>
-<form:form method="post" modelAttribute="client" action="/client/editData">
+<form:form method="post" modelAttribute="client" action="/client/app/editData">
   <form:hidden path="id"/>
   <form:input path="companyName"/>
   <form:errors path="companyName"/><br/>
@@ -24,7 +24,7 @@
   <form:errors path="password"/><br/>
   <input type="submit" value="Save">
 </form:form>
-<a href="<c:url value="/client/mainPage"/>">Powrót</a>
+<a href="<c:url value="/client/app/mainPage"/>">Powrót</a>
 
 </body>
 </html>

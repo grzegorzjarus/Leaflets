@@ -6,11 +6,11 @@
     <title>Strona główna aplikacji</title>
 </head>
 <body>
-<a href="<c:url value="/client/showData"/>">Moje dane</a><br>
-<a href="<c:url value="/client/editData"/>">Edycja danych</a><br>
+<a href="<c:url value="/client/app/showData"/>">Moje dane</a><br>
+<a href="<c:url value="/client/app/editData"/>">Edycja danych</a><br>
 <a href="<c:url value="/leaflet"/>">Dodaj nowe zamówienie</a><br>
 <a href="<c:url value="/client/offer/all"/>">Moje zamówienia</a><br><br>
-<a href="<c:url value="/client/logout"/>">Wyloguj</a><br>
+<a href="<c:url value="/client/app/logout"/>">Wyloguj</a><br>
 <%--<form action="/client/showData">--%>
 <%--    <input type="submit" value="Moje dane" />--%>
 <%--</form><br>--%>

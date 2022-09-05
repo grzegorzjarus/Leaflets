@@ -62,8 +62,9 @@ public class ClientController {
                 session.setAttribute("client", client);
             }
             if (session.getAttribute("client") != null) {
+                session.setMaxInactiveInterval(30);
                 System.out.println("Zalogowano użytkownika o emailu: " + email);
-                return "redirect:/client/mainPage";
+                return "redirect:/client/app/mainPage";
             } else {
                 System.out.println("Błędne hasło dla użytkownika o emailu: " + email);
                 return "redirect:/client/login";
@@ -74,35 +75,44 @@ public class ClientController {
         }
     }
 
-    @GetMapping("/logout")
+    @GetMapping("/app/logout")
     public String logout(HttpSession session) {
         session.invalidate();
         return "redirect:/client/login";
     }
 
-    @GetMapping("/mainPage")
+    @GetMapping("/app/mainPage")
     public String mainPage() {
         return "client/mainPage";
     }
 
-    @GetMapping("/showData")
+    @GetMapping("/app/showData")
     public String showData() {
         return "client/showData";
     }
 
-    @GetMapping("/editData")
+    @GetMapping("/app/editData")
     public String showEditForm(Model model, HttpSession session) {
+//        if(session.getAttribute("client")==null){
+//            return "redirect:/client/login";
+//        }
+//        else{
         Client client = (Client) session.getAttribute("client");
+        System.out.println("Klient w sesji: " + client);
         model.addAttribute("client", client);
         System.out.println("Metoda get show editForm " + model.getAttribute("client"));
         return "client/editData";
+        //}
+
     }
 
-    @PostMapping("/editData")
-    public String editData(Client client) {
+    @PostMapping("/app/editData")
+    public String editData(Client client, HttpSession session) {
         System.out.println("Metoda post show editForm " + client);
         client.setPassword(BCrypt.hashpw(client.getPassword(), salt));
+        session.setAttribute("client",client);
         clientService.save(client);
+
         return "client/showData";
     }
 }
