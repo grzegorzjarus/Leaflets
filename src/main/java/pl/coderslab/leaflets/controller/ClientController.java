@@ -19,7 +19,7 @@ public class ClientController {
     final ClientRepository clientRepository;
     final ClientService clientService;
 
-    private final String salt = BCrypt.gensalt(); // I don't know it is good idea, but it works
+    private final String salt = BCrypt.gensalt(); //TODO I don't know it is good idea, but it works
 
     public ClientController(ClientRepository clientRepository, ClientService clientService) {
         this.clientRepository = clientRepository;

@@ -1,8 +1,12 @@
 package pl.coderslab.leaflets.ajax;
 
 public class AjaxUser {
+
+
     private String name;
+    private String surname;
     private int age;
+    private int points;
     //private List<String> contacts;
 
     public void setName(String name) {
@@ -13,22 +17,41 @@ public class AjaxUser {
         this.age = age;
     }
 
-//    public void setContacts(List<String> contacts) {
-//        this.contacts = contacts;
-//    }
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
 
-//    public User(String name, int age, List<String> contacts) {
-//        this.name = name;
-//        this.age = age;
-//        this.contacts = contacts;
-//    }
+    public void setPoints(int points) {
+        this.points = points;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public int getPoints() {
+        return points;
+    }
 
     public AjaxUser() {
     }
 
-    public AjaxUser(String name, int age) {
-        this.name = name;
-        this.age = age;
+
+    @Override
+    public String toString() {
+        return "AjaxUser{" +
+                "name='" + this.name + '\'' +
+                ", surname='" + this.surname + '\'' +
+                ", age=" + this.age +
+                ", points=" + this.points +
+                '}';
     }
 }

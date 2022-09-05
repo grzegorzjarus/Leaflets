@@ -31,31 +31,31 @@ public class OfferController {
 
     Offer offer = new Offer();
 
-    @GetMapping("/offer")
-    @Transactional
-    public String createOffer(){
-        Date edd = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ");
-        System.out.println(formatter.format(edd));
-
-        Date ldd = new Date(2022,9,30);
-
-        region.setPoints(Arrays.transferToList(b));
-        region.setName("Rejon do zrobienia");
-
-
-        offer.setStatus(OfferStatus.Distribution);
-        offer.setLeafletHeight(220);
-        offer.setLeafletWidth(150);
-        offer.setKilogramPer1000Pieces(1.5);
-        offer.setQuantity(5000);
-        offer.setEarliestDistributionDate(edd);
-        offer.setLatestDistributionDate(ldd);
-        offer.setOrderRegion(region);
-
-
-        offerRepository.save(offer);
-        return "leaflets";
-    }
+//    @GetMapping("/offer")
+//    @Transactional
+//    public String createOffer(){
+//        Date edd = new Date();
+//        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy ");
+//        System.out.println(formatter.format(edd));
+//
+//        Date ldd = new Date(2022,9,30);
+//
+//        region.setPoints(Arrays.transferToList(b));
+//        region.setName("Rejon do zrobienia");
+//
+//
+//        offer.setStatus(OfferStatus.Distribution);
+//        offer.setLeafletHeight(220);
+//        offer.setLeafletWidth(150);
+//        offer.setKilogramPer1000Pieces(1.5);
+//        offer.setQuantity(5000);
+//        offer.setEarliestDistributionDate(edd);
+//        offer.setLatestDistributionDate(ldd);
+//        offer.setOrderRegion(region);
+//
+//
+//        offerRepository.save(offer);
+//        return "leaflets";
+//    }
 
 }

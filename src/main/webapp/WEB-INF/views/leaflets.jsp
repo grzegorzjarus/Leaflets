@@ -190,25 +190,32 @@
       let napis = "napis";
       let napis2 = "napis";
 
-      var user2 = {
+      let user = {
         'name' : 'test',
-        'age ' : 10,
-        'contacts' : ['12313','123213123']
+        'surname' : 'nazwisko',
+        'age' : 11,
+        'points': 50
       }
 
-      var user = {
-        'name' : 'test',
-        'age ' : 10
-
+      let offer = {
+        'quantity': 5000,
+        'leafletWidth': 150,
+        'leafletHeight': 220,
+        'kilogramPer1000Pieces': 1.5,
+        // 'earliestDistributionDate': "2022-09-12",
+        // 'latestDistributionDate': "16-09-2022",
+        'status': 0
       }
-      var name = "imie"
-      var surname = "nazwisko"
-      var age=18
-      var myData = {
+
+      let myData = {
         'coordinates': coordinates,
         //'user': user
+        'offer': offer
 
       }
+      // var myData = {
+      //   'coordinates': coordinates
+      // }
       $.ajax({
         headers: {
           'Accept': 'application/json',
@@ -218,9 +225,13 @@
         type: "POST",
         dataType: "JSON",
         contentType: "application/json",
+
         data: JSON.stringify(myData),
+
+        //data: myData,
         success: function (data) {
-          console.log(data)
+          //console.log(data)
+          console.log(myData);
         }
       })
 

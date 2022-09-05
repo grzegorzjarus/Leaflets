@@ -16,4 +16,11 @@ public class Arrays {
             points.add(point);
         }return points;
     }
+
+    public static void printArray(double[][] array){
+        for (int i = 0; i < array.length; i++) {
+            System.out.print(array[i][0]+ "  ");
+            System.out.println(array[i][1]);
+        }
+    }
 }

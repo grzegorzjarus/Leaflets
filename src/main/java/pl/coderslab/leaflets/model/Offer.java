@@ -5,8 +5,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 @Data
 @NoArgsConstructor
@@ -25,9 +28,11 @@ public class Offer {
     private double leafletWidth;
     private double leafletHeight;
     private double kilogramPer1000Pieces;
-    private Date earliestDistributionDate;
+    private String earliestDistributionDate;
     private Date latestDistributionDate;
     private OfferStatus status;
+
+
 
     @OneToOne
     private Proposal proposal;
@@ -35,6 +40,14 @@ public class Offer {
 
     @OneToMany
     private List<Adress> notDeliveredAddresses;
+
+
+    public void setEarliestDistributionDate(String date){
+      //  LocalDateTime localeDateTime = LocalDateTime.now();
+        LocalDateTime localeDateTime = LocalDateTime.parse(date);
+        this.earliestDistributionDate= DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(localeDateTime);
+    }
+
 
 
 

@@ -8,6 +8,7 @@ import pl.coderslab.leaflets.ajax.AjaxUser;
 import pl.coderslab.leaflets.ajax.MyData;
 import pl.coderslab.leaflets.model.Client;
 import pl.coderslab.leaflets.model.User;
+import pl.coderslab.leaflets.util.Arrays;
 
 @Controller
 
@@ -15,7 +16,7 @@ public class MainController {
 
     static MyData staticData;
 
-    AjaxUser user = new AjaxUser();
+    static AjaxUser user;
 
     double[][] a = {
             {1.0, 2.1},
@@ -70,9 +71,13 @@ public class MainController {
         } else {
             MyData myData = new MyData();
             myData.setCoordinates(b);
+            user = new AjaxUser();
             user.setAge(32);
             user.setName("Grzesiek");
-            //myData.setUser(user);
+            user.setSurname("Jarus");
+            user.setPoints(99);
+            myData.setUser(user);
+            System.out.println("Metoda get /api/leaflet "+ myData);
             return myData;
         }
     }
@@ -96,10 +101,15 @@ public class MainController {
         staticData = myData;
 
 
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("getCoordinates");
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("getCoordinates");
 
-        System.out.println(myData);
+//        System.out.println("Metoda post /api/leaflet "+ myData);
+//        System.out.println(myData);
+//        System.out.println(myData.getUser().getName());
+//        System.out.println(myData.getUser().getAge());
+        Arrays.printArray(myData.getCoordinates());
+        System.out.println(myData.getOffer());
         return myData;
     }
 
