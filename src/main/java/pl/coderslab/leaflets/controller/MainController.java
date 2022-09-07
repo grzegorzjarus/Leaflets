@@ -7,6 +7,8 @@ import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.leaflets.ajax.AjaxUser;
 import pl.coderslab.leaflets.ajax.MyData;
 import pl.coderslab.leaflets.model.Client;
+import pl.coderslab.leaflets.model.Offer;
+import pl.coderslab.leaflets.model.Region;
 import pl.coderslab.leaflets.model.User;
 import pl.coderslab.leaflets.util.Arrays;
 
@@ -64,23 +66,23 @@ public class MainController {
 
     }
 
-    @GetMapping("/api/leaflet")
-    public @ResponseBody MyData getCoordinates() {
-        if (staticData != null) {
-            return staticData;
-        } else {
-            MyData myData = new MyData();
-            myData.setCoordinates(b);
-            user = new AjaxUser();
-            user.setAge(32);
-            user.setName("Grzesiek");
-            user.setSurname("Jarus");
-            user.setPoints(99);
-            myData.setUser(user);
-            System.out.println("Metoda get /api/leaflet "+ myData);
-            return myData;
-        }
-    }
+//    @GetMapping("/api/leaflet")
+//    public @ResponseBody MyData getCoordinates() {
+//        if (staticData != null) {
+//            return staticData;
+//        } else {
+//            MyData myData = new MyData();
+//            myData.setCoordinates(b);
+//            user = new AjaxUser();
+//            user.setAge(32);
+//            user.setName("Grzesiek");
+//            user.setSurname("Jarus");
+//            user.setPoints(99);
+//            myData.setUser(user);
+//            System.out.println("Metoda get /api/leaflet "+ myData);
+//            return myData;
+//        }
+//    }
 
     @GetMapping("/api/leaflet2")
     public @ResponseBody String getCoordinates2() {
@@ -93,25 +95,44 @@ public class MainController {
         }
     }
 
-    @PostMapping(value = "/api/leaflet", consumes = {"application/json"})
-    @ResponseBody
-    public  MyData complicateObject(@RequestBody MyData myData) {
-        // Method details
+//    @PostMapping(value = "/api/leaflet", consumes = {"application/json"})
+//    @ResponseBody
+//    public  MyData complicateObject(@RequestBody MyData myData) {
+//        // Method details
+//
+//        staticData = myData;
+//
+//
+////        ModelAndView modelAndView = new ModelAndView();
+////        modelAndView.setViewName("getCoordinates");
+//
+////        System.out.println("Metoda post /api/leaflet "+ myData);
+////        System.out.println(myData);
+////        System.out.println(myData.getUser().getName());
+////        System.out.println(myData.getUser().getAge());
+//        Arrays.printArray(myData.getCoordinates());
+//        System.out.println(myData.getOffer());
+//        return myData;
+//    }
 
-        staticData = myData;
 
-
-//        ModelAndView modelAndView = new ModelAndView();
-//        modelAndView.setViewName("getCoordinates");
-
+//    @PostMapping(value = "/api/leaflet", consumes = {"application/json"})
+//    @ResponseBody
+//    public MyData complicateObject(@RequestBody MyData myData) {
+//
+//        staticData = myData;
+//
 //        System.out.println("Metoda post /api/leaflet "+ myData);
-//        System.out.println(myData);
-//        System.out.println(myData.getUser().getName());
-//        System.out.println(myData.getUser().getAge());
-        Arrays.printArray(myData.getCoordinates());
-        System.out.println(myData.getOffer());
-        return myData;
-    }
+//
+//        Offer offer = myData.getOffer();
+//        System.out.println(offer.toString());
+//
+//        Region region = new Region("Rejon", Arrays.transferToList(myData.getCoordinates()));
+//        offer.setOrderRegion(region);
+//        System.out.println(offer.toString());
+//
+//        return myData;
+//    }
 
     @ExceptionHandler({Exception.class})
     public void resolveException(Exception e) {

@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -28,8 +29,8 @@ public class Offer {
     private double leafletWidth;
     private double leafletHeight;
     private double kilogramPer1000Pieces;
-    private String earliestDistributionDate;
-    private Date latestDistributionDate;
+    private LocalDate earliestDistributionDate;
+    private LocalDate latestDistributionDate;
     private OfferStatus status;
 
 
@@ -42,10 +43,33 @@ public class Offer {
     private List<Adress> notDeliveredAddresses;
 
 
-    public void setEarliestDistributionDate(String date){
-      //  LocalDateTime localeDateTime = LocalDateTime.now();
-        LocalDateTime localeDateTime = LocalDateTime.parse(date);
-        this.earliestDistributionDate= DateTimeFormatter.ofPattern("yyyy-MM-dd", Locale.ENGLISH).format(localeDateTime);
+    public void setEarliestDistributionDate(String stringDate){
+        LocalDate date = LocalDate.parse(stringDate);
+        this.earliestDistributionDate = date;
+    }
+
+    public void setLatestDistributionDate(String stringDate){
+        LocalDate date = LocalDate.parse(stringDate);
+        this.latestDistributionDate = date;
+    }
+
+    public void setQuantity(int quantity){
+        this.quantity=quantity;
+    }
+
+    public void setLeafletHeight(double leafletHeight){
+        this.leafletHeight=leafletHeight;
+    }
+
+    public void setLeafletWidth(double leafletWidth){
+        this.leafletWidth=leafletWidth;
+    }
+
+    public void setKilogramPer1000Pieces(double kilogramPer1000Pieces){
+        this.kilogramPer1000Pieces=kilogramPer1000Pieces;
+    }
+    public void setStatus(OfferStatus status){
+        this.status=status;
     }
 
 

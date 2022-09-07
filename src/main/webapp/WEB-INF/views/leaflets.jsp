@@ -202,9 +202,9 @@
         'leafletWidth': 150,
         'leafletHeight': 220,
         'kilogramPer1000Pieces': 1.5,
-        // 'earliestDistributionDate': "2022-09-12",
-        // 'latestDistributionDate': "16-09-2022",
-        'status': 0
+        'earliestDistributionDate': "2022-09-12",
+        'latestDistributionDate': "2022-09-16",
+        'status': 3
       }
 
       let myData = {

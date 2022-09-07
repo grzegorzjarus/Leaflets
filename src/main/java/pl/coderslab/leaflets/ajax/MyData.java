@@ -10,19 +10,18 @@ public class MyData {
 
     //List<Point> coordinates;
     private double[][] coordinates;
-    private AjaxUser user;
-
+    //private AjaxUser user;
     private Offer offer;
 
     public MyData() {
 
     }
 
-    public MyData(double[][] coordinates, AjaxUser user, Offer offer) {
-        this.coordinates = coordinates;
-        this.user = user;
-        this.offer=offer;
-    }
+//    public MyData(double[][] coordinates, AjaxUser user, Offer offer) {
+//        this.coordinates = coordinates;
+//        this.user = user;
+//        this.offer=offer;
+//    }
 
 
 
@@ -34,13 +33,13 @@ public class MyData {
         return this.coordinates;
     }
 
-    public void setUser(AjaxUser user) {
-        this.user=user;
-    }
-
-    public AjaxUser getUser() {
-        return user;
-    }
+//    public void setUser(AjaxUser user) {
+//        this.user=user;
+//    }
+//
+//    public AjaxUser getUser() {
+//        return user;
+//    }
 
     public Offer getOffer() {
         return offer;
@@ -54,10 +53,8 @@ public class MyData {
     public String toString() {
         return "MyData{" +
                 "coordinates=" + Arrays.toString(coordinates) +
-                ", user=" + user +
+                ", offer=" + offer +
                 '}';
     }
-
-
 }
 
