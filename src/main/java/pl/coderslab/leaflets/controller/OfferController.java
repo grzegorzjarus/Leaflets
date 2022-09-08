@@ -5,21 +5,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import pl.coderslab.leaflets.ajax.AjaxUser;
 import pl.coderslab.leaflets.ajax.MyData;
-import pl.coderslab.leaflets.model.Client;
-import pl.coderslab.leaflets.model.Offer;
-import pl.coderslab.leaflets.model.OfferStatus;
-import pl.coderslab.leaflets.model.Region;
+import pl.coderslab.leaflets.model.*;
 import pl.coderslab.leaflets.repository.OfferRepository;
 import pl.coderslab.leaflets.util.Arrays;
 
+import javax.persistence.EntityNotFoundException;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 @Controller
+@Transactional
 public class OfferController {
 
     Region region = new Region();
@@ -37,7 +38,7 @@ public class OfferController {
 
     private final OfferRepository offerRepository;
 
-    Offer offer;
+    private Offer offer;
 
     public OfferController(OfferRepository offerRepository) {
         this.offerRepository = offerRepository;
@@ -53,13 +54,16 @@ public class OfferController {
     }
 
     @PostMapping("/offer/create1")
-    public String createOffer1Post(Offer offer, Model model){
+    public String createOffer1Post(Offer offer, Model model, HttpSession session) {
         System.out.println("Metoda post /offer/create1 OfferController ");
         System.out.println(offer);
+        Client client = (Client) session.getAttribute("client");
+        offer.setClient(client);
+        offer.setStatus(OfferStatus.AwaitingProposal);
         model.addAttribute(offer);
-        this.offer=offer;
+        this.offer = offer;
         return "client/createOffer2";
-       // return "/api/leaflet";
+        // return "/api/leaflet";
     }
 
 //    @GetMapping("/api/leaflet")
@@ -76,7 +80,7 @@ public class OfferController {
             MyData myData = new MyData();
             myData.setCoordinates(b);
             myData.setOffer(offer);
-            System.out.println("Metoda get /api/leaflet "+ myData);
+            System.out.println("Metoda get /api/leaflet " + myData);
             Arrays.printArray(myData.getCoordinates());
             return myData;
         }
@@ -84,19 +88,19 @@ public class OfferController {
 
 
     @PostMapping(value = "/api/leaflet", consumes = {"application/json"})
-   // @ResponseBody
+    // @ResponseBody
     public String createCompleteOffer(@RequestBody MyData myData, Model model, HttpSession session) {
 
         System.out.println("Metoda post /api/leaflet OfferController ");
         Region region = new Region("Rejon", Arrays.transferToList(myData.getCoordinates()));
         offer.setOrderRegion(region);
         Offer offer2 = myData.getOffer();
-       // offer2.setOrderRegion(region);
+        // offer2.setOrderRegion(region);
         System.out.println(offer.toString());
 
-        model.addAttribute("offer",offer);
+        model.addAttribute("offer", offer);
         offerRepository.save(offer);
-        session.setAttribute("offer",offer);
+        session.setAttribute("offer", offer);
         //return offer.toString();
         return "redirect:/offer/showOffer";
     }
@@ -104,6 +108,73 @@ public class OfferController {
     @GetMapping("/offer/showOffer")
     public String showOffer() {
         return "client/showOffer";
+    }
+
+    @GetMapping("/offer/showOffer/{id}")
+    public String showOfferById(HttpSession session, @PathVariable long id) {
+        Offer offer = offerRepository.findOfferById(id);
+        List<Point> points = offer.getOrderRegion().getPoints();
+        // model.addAttribute("offer", offer);
+        MyData myData = new MyData();
+        myData.setCoordinates(Arrays.transferToArray(points));
+        myData.setOffer(offer);
+        session.setAttribute("offer",offer);
+//        session.setAttribute("offer",offer);
+//        session.setAttribute("coordinates",points);
+        session.setAttribute("myData", myData);
+        System.out.println("Metoda /offer/showOffer/{id} " + session.getAttribute("myData"));
+        //return "client/showOffer";
+        return "client/showOfferWithMap";
+    }
+
+
+    @GetMapping("/api/showOfferId")
+
+    public @ResponseBody MyData showOfferId(HttpSession session) {
+//        if (staticData != null) {
+//            return staticData;
+//        } else {
+        MyData myData = (MyData) session.getAttribute("myData");
+        System.out.println("Metoda get /offer/showOfferId" + myData);
+        return myData;
+    }
+
+
+
+
+//    @GetMapping("/offer/showOffer2/{id}")
+//    public ModelAndView showOfferWithMap(Model model, @PathVariable long id) {
+////        if (staticData != null) {
+////            return staticData;
+////        } else {
+//        System.out.println("Metoda get /offer/showOffer2/{id} ");
+//        Offer offer = offerRepository.findOfferById(id);
+//        List<Point> points = offer.getOrderRegion().getPoints();
+//        // model.addAttribute("offer", offer);
+//        MyData myData = new MyData();
+//        myData.setCoordinates(Arrays.transferToArray(points));
+//        myData.setOffer(offer);
+//        model.addAttribute("myData", myData);
+//
+//
+//        ModelAndView modelAndView = new ModelAndView("client/showOfferWithMap");
+//        //ModelAndView modelAndView = new ModelAndView();
+//        // modelAndView.addObject("offer",offer);
+//        return modelAndView;
+//        //  Arrays.printArray(myData.getCoordinates());
+//        //  return "client/showOfferWithMap";
+//
+//    }
+
+    @GetMapping("/client/app/allOffers")
+    public String getAllClientOffers(HttpSession session, Model model) {
+        List<Offer> offers2 = offerRepository.findAll();
+        Client client = (Client) session.getAttribute("client");
+        List<Offer> offers = offerRepository.findOffersByClientId(client.getId());
+        System.out.println(offers);
+        model.addAttribute("offers", offers);
+        return "client/showAllClientOffers";
+
     }
 
 

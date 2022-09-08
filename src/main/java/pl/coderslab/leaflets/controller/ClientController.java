@@ -11,9 +11,11 @@ import pl.coderslab.leaflets.service.ClientService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 
 @Controller
 @RequestMapping("/client")
+@Transactional
 public class ClientController {
 
     final ClientRepository clientRepository;
@@ -62,7 +64,7 @@ public class ClientController {
                 session.setAttribute("client", client);
             }
             if (session.getAttribute("client") != null) {
-                session.setMaxInactiveInterval(30);
+                session.setMaxInactiveInterval(300);
                 System.out.println("Zalogowano użytkownika o emailu: " + email);
                 return "redirect:/client/app/mainPage";
             } else {

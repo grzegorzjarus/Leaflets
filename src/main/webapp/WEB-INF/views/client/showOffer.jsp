@@ -20,6 +20,6 @@
 <h3>Data końcowa: ${offer.latestDistributionDate}</h3>
 
 <h3>Rejon: ${offer.orderRegion}</h3>
-<a href="<c:url value="/client/app/mainPage"/>">Powrót</a>
+<a href="<c:url value="/client/app/allOffers"/>">Powrót</a>
 </body>
 </html>

@@ -35,6 +35,9 @@ public class Offer {
 
 
 
+    @ManyToOne
+    private Client client;
+
     @OneToOne
     private Proposal proposal;
    // private List<Address> notDeliveredAddresses; // should be like this to display addresses as markers
@@ -70,6 +73,14 @@ public class Offer {
     }
     public void setStatus(OfferStatus status){
         this.status=status;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
 

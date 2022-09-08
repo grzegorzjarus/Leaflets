@@ -8,8 +8,8 @@
 <body>
 <a href="<c:url value="/client/app/showData"/>">Moje dane</a><br>
 <a href="<c:url value="/client/app/editData"/>">Edycja danych</a><br>
-<a href="<c:url value="/leaflet"/>">Dodaj nowe zamówienie</a><br>
-<a href="<c:url value="/client/offer/all"/>">Moje zamówienia</a><br><br>
+<a href="<c:url value="/offer/create1"/>">Dodaj nowe zamówienie</a><br>
+<a href="<c:url value="/client/app/allOffers"/>">Moje zamówienia</a><br><br>
 <a href="<c:url value="/client/app/logout"/>">Wyloguj</a><br>
 <%--<form action="/client/showData">--%>
 <%--    <input type="submit" value="Moje dane" />--%>
