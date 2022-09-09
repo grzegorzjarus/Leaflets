@@ -177,6 +177,30 @@ public class OfferController {
 
     }
 
+    @GetMapping("/client/app/allOffers/awaiting")
+    public String getAllClientAwaitingOffers(HttpSession session, Model model){
+        Client client = (Client) session.getAttribute("client");
+        List<Offer> awaitingOffers = offerRepository.findAwaitingOffersByClientId(client.getId());
+        model.addAttribute("offers", awaitingOffers);
+        return "client/showAllClientOffers";
+    }
+
+    @GetMapping("/client/app/allOffers/active")
+    public String getAllClientActiveOffers(HttpSession session, Model model){
+        Client client = (Client) session.getAttribute("client");
+        List<Offer> activeOffers = offerRepository.findActiveOffersByClientId(client.getId());
+        model.addAttribute("offers", activeOffers);
+        return "client/showAllClientOffers";
+    }
+
+    @GetMapping("/client/app/allOffers/finished")
+    public String getAllClientFinishedOffers(HttpSession session, Model model){
+        Client client = (Client) session.getAttribute("client");
+        List<Offer> finishedOffers = offerRepository.findFinishedOffersByClientId(client.getId());
+        model.addAttribute("offers", finishedOffers);
+        return "client/showAllClientOffers";
+    }
+
 
     @ExceptionHandler({Exception.class})
     public void resolveException(Exception e) {

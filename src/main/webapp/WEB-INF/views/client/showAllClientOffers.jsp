@@ -42,6 +42,11 @@
     </c:forEach>
     </tbody>
 </table>
+
+<a href="<c:url value="/client/app/allOffers"/>">Wszystkie</a>
+<a href="<c:url value="/client/app/allOffers/awaiting"/>">Oczekujące</a>
+<a href="<c:url value="/client/app/allOffers/active"/>">Aktywne</a>
+<a href="<c:url value="/client/app/allOffers/finished"/>">Zakończone</a><br>
 <a href="<c:url value="/client/app/mainPage"/>">Powrót</a>
 </body>
 </html>
