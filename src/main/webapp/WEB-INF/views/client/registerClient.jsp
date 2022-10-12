@@ -12,8 +12,8 @@
 
     <%--    <form:hidden path="id"/>--%>
     Company name:
-    <form:input path="companyName"/><br>
-    <%--    <form:errors path="email" cssClass="error-class"/>--%>
+    <form:input path="companyName"/>
+    <form:errors path="companyName" cssClass="error-class"/><br>
     First name:
     <form:input path="firstName"/><br>
     Surname:

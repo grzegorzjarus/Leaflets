@@ -1,11 +1,11 @@
 package pl.coderslab.leaflets.model;
 
 public enum OfferStatus {
-    AwaitingProposal,
-    Rejected,
-    Cancelled,
-    Accepted,
-    Distribution,
-    Finished,
-    ReviewDone
+    AWAITING_PROPOSAL,
+    REJECTED,
+    CANCELLED,
+    ACCEPTED,
+    DISTRIBUTION,
+    FINISHED,
+    REVIEW_DONE
 }

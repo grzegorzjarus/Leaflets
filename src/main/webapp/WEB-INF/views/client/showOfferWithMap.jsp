@@ -56,10 +56,10 @@
   function drawMap(data) {
 
 
-    var center = [51.1154, 17.0704];
-
+    //var center = [51.1154, 17.0704];
+    var center = [data.coordinates[0][0], data.coordinates[0][1]];
     // Create the map
-    var map = L.map('map').setView(center, 14);
+    var map = L.map('map').setView(center, 15);
 
     // Set up the OSM layer
     L.tileLayer(
@@ -227,8 +227,9 @@
 <h3>Wysokość ulotki: ${offer.leafletHeight}</h3>
 <h3>Data początkowa: ${offer.earliestDistributionDate}</h3>
 <h3>Data końcowa: ${offer.latestDistributionDate}</h3>
+<h3>Nazwa rejonu: ${offer.orderRegion.name}</h3>
 
-<h3>Rejon: ${offer.orderRegion}</h3>
+<%--<h3>Rejon: ${offer.orderRegion}</h3>--%>
 <a href="<c:url value="/client/app/allOffers"/>">Powrót</a>
 </body>
 </html>

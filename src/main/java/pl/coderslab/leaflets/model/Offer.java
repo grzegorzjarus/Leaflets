@@ -5,6 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,12 +29,18 @@ public class Offer {
     @OneToOne(cascade = {CascadeType.ALL})
     private Region orderRegion;
 
+    @Min(value =18, message="Musi mieć przynajmniej 18 lat")
     private int quantity;
     private double leafletWidth;
     private double leafletHeight;
     private double kilogramPer1000Pieces;
+    //@Future
     private LocalDate earliestDistributionDate;
+
+    //@Future
     private LocalDate latestDistributionDate;
+
+    @Enumerated(value = EnumType.STRING) // to display String enum not int
     private OfferStatus status;
 
 
@@ -91,24 +101,24 @@ public class Offer {
     }
 
     public Offer addProposal(Offer offer, Proposal proposal){
-        offer.status= OfferStatus.Accepted;
+        offer.status= OfferStatus.ACCEPTED;
         return offer;
     }
 
     public Offer acceptProposal(Offer offer, Proposal proposal){
         this.proposal=proposal;
-        offer.status= OfferStatus.Accepted;
+        offer.status= OfferStatus.ACCEPTED;
         return offer;
     }
 
     public Offer cancel(Offer offer){
-        offer.status= OfferStatus.Cancelled;
+        offer.status= OfferStatus.CANCELLED;
         return offer;
     }
 
     public Offer finish(Offer offer, List<Adress> notDeliveredAddresses){
         this.notDeliveredAddresses=notDeliveredAddresses;
-        offer.status= OfferStatus.Finished;
+        offer.status= OfferStatus.FINISHED;
         return offer;
     }
 

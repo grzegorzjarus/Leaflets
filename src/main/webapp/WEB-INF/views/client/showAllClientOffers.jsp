@@ -20,6 +20,8 @@
     <th>Data początkowa</th>
     <th>Data Końcowa</th>
     <th>Nazwa</th>
+    <th>Ilość ulotek</th>
+    <th>Status oferty</th>
 <%--    <th>author</th>--%>
 <%--    <th>publisher</th>--%>
 <%--    <th>type</th>--%>
@@ -32,6 +34,8 @@
             <td><c:out value="${offer.earliestDistributionDate}"/></td>
             <td><c:out value="${offer.latestDistributionDate}"/></td>
             <td><c:out value="${offer.orderRegion.name}"/></td>
+            <td><c:out value="${offer.quantity}"/></td>
+            <td><c:out value="${offer.status}"/></td>
 <%--            <td><c:out value="${book.publisher}"/></td>--%>
 <%--            <td><c:out value="${book.type}"/></td>--%>
             <td> <a href="<c:url value="/offer/showOffer/${offer.id}"/>">Pokaż ofertę</a></td>

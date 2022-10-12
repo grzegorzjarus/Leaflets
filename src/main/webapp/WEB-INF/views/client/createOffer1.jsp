@@ -10,12 +10,15 @@
 <form:form action="/offer/create1" method="post" modelAttribute="offer">
   Data początkowa:
   <input type="date" name="earliestDistributionDate">
+  <form:errors path="earliestDistributionDate" cssClass="error-class"/>
   <br>
   Data końcowa:
   <input type="date" name="latestDistributionDate">
+  <form:errors path="latestDistributionDate" cssClass="error-class"/>
   <br>
   Ilość:
   <input type="text" name="quantity">
+  <form:errors path="quantity" cssClass="error-class"/>
   <br>
   Szerokość ulotki:
   <input type="text" name="leafletWidth">
@@ -26,10 +29,13 @@
   Waga 1000szt:
   <input type="text" name="kilogramPer1000Pieces">
   <br>
+  Nazwa:
+  <input type="text" name="orderRegion.name">
+  <br>
   Uwagi:
   <input type="text" name="sometext">
   <br>
-  <input type="submit" value="Save">
+  <input type="submit" value="Dalej">
 </form:form>
 
 </body>

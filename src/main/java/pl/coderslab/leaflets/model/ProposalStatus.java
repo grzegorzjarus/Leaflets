@@ -1,13 +1,13 @@
 package pl.coderslab.leaflets.model;
 
 public enum ProposalStatus{
-    Before,
-    Initial,
-    Rejected,
-    Cancelled,
-    Accepted,
-    Ready,
-    Distribution,
-    Finished,
-    ReviewDone
+    BEFORE,
+    INITIAL,
+    REJECTED,
+    CANCELLED,
+    ACCEPTED,
+    READY,
+    DISTRIBUTION,
+    FINISHED,
+    REVIEW_DONE
 }

@@ -4,6 +4,7 @@ package pl.coderslab.leaflets.controller;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.leaflets.model.Client;
 import pl.coderslab.leaflets.repository.ClientRepository;
@@ -12,6 +13,7 @@ import pl.coderslab.leaflets.service.ClientService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/client")
@@ -36,7 +38,10 @@ public class ClientController {
     }
 
     @PostMapping("/register")
-    public String registerClient(Client client) {
+    public String registerClient(@Valid Client client, BindingResult result) {
+        if(result.hasErrors()){
+            return "client/registerClient";
+        }
         System.out.println(client);
         //client.setPassword(BCrypt.hashpw(client.getPassword(), BCrypt.gensalt()));
         client.setPassword(BCrypt.hashpw(client.getPassword(), salt));

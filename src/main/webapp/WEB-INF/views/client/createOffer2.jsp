@@ -182,7 +182,8 @@
 
                 //data: myData,
                 success: function (data) {
-                    //console.log(data)
+                    alert("Dodano ofertę");
+                    console.log(data)
                     console.log(myData);
                 }
             })
@@ -216,7 +217,9 @@
     });
 
 </script>
-<a href="<c:url value="/offer/showOffer"/>">Pokaż ofertę</a>
+<%--<a href="<c:url value="/offer/showOffer"/>">Pokaż ofertę</a>--%>
+<a href="<c:url value="/offer/showOffer/${offer.id}"/>">Pokaż ofertę</a>
+
 
 </body>
 </html>

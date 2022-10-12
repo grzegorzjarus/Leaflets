@@ -8,21 +8,13 @@ import java.util.Arrays;
 
 public class MyData {
 
-    //List<Point> coordinates;
+
     private double[][] coordinates;
-    //private AjaxUser user;
     private Offer offer;
 
     public MyData() {
 
     }
-
-//    public MyData(double[][] coordinates, AjaxUser user, Offer offer) {
-//        this.coordinates = coordinates;
-//        this.user = user;
-//        this.offer=offer;
-//    }
-
 
 
     public void setCoordinates(double[][] coordinates) {
@@ -33,13 +25,6 @@ public class MyData {
         return this.coordinates;
     }
 
-//    public void setUser(AjaxUser user) {
-//        this.user=user;
-//    }
-//
-//    public AjaxUser getUser() {
-//        return user;
-//    }
 
     public Offer getOffer() {
         return offer;
